@@ -1,0 +1,161 @@
+$def with (changetime)
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn" lang="zh-cn" >
+    <head>
+        <title>修改服务器时间</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" >
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css" media="screen">
+        <link rel="stylesheet" href="/static/css/bootstrap-datetimepicker.min.css" media="screen">
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+            .footer {
+                text-align: center;
+                padding: 30px 0;
+                margin-top: 70px;
+                border-top: 1px solid #e5e5e5;
+                background-color: #f5f5f5;
+            }
+            .input
+            {
+                font: 12px Arial, Helvetica, sans-serif;
+                border: 2px solid #86888B;
+            }
+            #filedrag
+            {
+                display: none;
+                font-weight: bold;
+                text-align: center;
+                padding: 1em 0;
+                margin: 1em 0;
+                color: #555;
+                border: 2px dashed #555;
+                border-radius: 7px;
+                cursor: default;
+            }
+            #filedrag.hover
+            {
+                color: #71C671;
+                border-color: #71C671;
+                border-style: solid;
+                box-shadow: inset 0 3px 4px #888;
+            }
+            table{table-layout: fixed;}
+            td{word-break: break-all; word-wrap:break-word;}
+            footer{display:block;}
+        </style>
+        <script type="text/javascript" src="/static/js/jquery.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.file-input.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap-datetimepicker.min.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+         <script type="text/javascript">
+                                $$('.form_datetime').datetimepicker({
+                                    //language:  'fr',
+                                    weekStart: 1,
+                                    todayBtn:  1,
+                                    autoclose: 1,
+                                    todayHighlight: 1,
+                                    startView: 2,
+                                    forceParse: 0,
+                                    showMeridian: 1
+                                });
+                            </script>
+    </head>
+
+    <body style="font-family:Microsoft YaHei;">
+    	<iframe style="display:none" id="ifm" name="ifm"></iframe>
+    	 <!--导航条-->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" rel="tipsy" href="/"  ><img src="/static/img/logo.png" style="width: 25px"></img>&nbsp;&nbsp;首页</a>
+                    <a class="brand" rel="tipsy" href="/"  >&nbsp;&nbsp;关于</a>
+                    <!--<form class="navbar-search pull-right" data-bind="submit: search.addDish">-->
+                        <!--<input id="search-dish" type="text" class="search-query" data-provide="typeahead" data-bind="搜索文件" rel="tooltip" data-placement="left" data-trigger="manual" data-original-title="再次回车加入订单" placeholder="Search">-->
+                    <!--</form>-->
+                </div>
+            </div>
+        </div>
+        <!--导航栏结束-->
+
+        <!--输入框开始-->
+        <div class="container">
+            <div class="container-fluid">
+            	<form id="datetime" action="changetime" method="POST" target="ifm" role="form" class="form-horizontal">
+                    <fieldset>
+                        <legend>当前服务器时间:</legend>
+                        <div>
+                            $if changetime:
+                                <label><font color="red">$changetime</font></label>
+                            $else:
+                                <label><font color="red">get time failed</font></label>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend></legend>
+                    </fieldset>
+                    <fieldset>
+                        <legend>输入要修改时间:</legend>
+                        <div>
+                            <!--
+                            <div class="control-group">
+                                <div class="controls input-append date form_datetime" date-date-format="yyyy-MM-dd hh:mm:ss" data-link-field="dtp_input1">
+                                    <input type="text" size="16" value="" ></input>
+                                    <span class="add-on"><i class="icon-remove"></i></span>
+                                    <span class="add-on"><i class="icon-th"></i></span>
+                                </div>
+                                <input type="hidden" id="dtp_input1" value="" /><br/>
+                            </div>
+                            -->
+                            <input type="text" id="changevalue"  name="changevalue"  placeholder="time">
+                            <!--<input type="text" id="changevalue1"  name="changevalue1"  placeholder="time">-->
+                            <button type="submit" class="btn btn-primary">Go!</button>
+                        </div>
+                    </fieldset>
+                    <!--<div class="row">
+                            <div class="form-group" >
+                                <label for="time">要修改的时间</label>
+                                <input type="text" id="changetime" class="form-control" placeholder="time">
+                                <span class="input_group_btn">
+                                    <button type="submit" class="btn btn-primary btn-lg">GO!</botton>
+                                </span>
+                            </div>
+                            <p>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg">GO!</botton>
+                                </div>
+                            </p>
+                    </div>-->
+                </form>
+            </div>
+        </div>
+
+        <!--Footer-->
+        <footer class="footer">
+            <div class="container-fluid">
+                <!--
+                <p><font color="gray">
+                Designed and built by  
+                <a href="http://i.orzace.com">Ace</a></br>
+                -->
+                Powerd by 
+                <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>
+                , and 
+                <a href="http://webpy.org">web.py</a></br>
+                in memory of
+                <a href="http://www.aaronsw.com/">Aaron H. Swartz</a></br></br></font>
+            </p>
+            </div>
+        </footer>
+        <!--Footer结束-->
+
+    </body>
+</html>
